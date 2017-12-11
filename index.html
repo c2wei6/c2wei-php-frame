@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+    <div id="timer">
+    	<h1 id="clock"></h1>
+    </div>
+    <script type="text/javascript">
+    	var endTime = new Date(2017, 12, 24, 21, 30, 0);
+
+		var checktime = function (i) {
+			if (i < 10) {
+				return ('0' + i);
+			}
+			return i;
+		}
+
+        var timer = function () {
+    		var nowTime = new Date();
+			var leftTime = endTime.getTime() - nowTime.getTime();
+
+			if (leftTime > 0) {
+				var hours = parseInt(leftTime / 1000 / 60 / 60 % 24 , 10); //计算剩余的小时 
+                var minutes = parseInt(leftTime / 1000 / 60 % 60, 10);//计算剩余的分钟 
+                var seconds = parseInt(leftTime / 1000 % 60, 10);
+                var html = checktime(hours) + ':' + checktime(minutes) + ':' + checktime(seconds);
+                // $("p.timer").html(html);
+                document.getElementById('clock').innerHTML = html;
+			} else {
+				console.log(1);
+				// $("#timer").hide();
+				// $("#draw").show();
+			}
+		}
+
+		timer();
+		setInterval(timer, 1000);
+    </script>
+</body>
+</html>
